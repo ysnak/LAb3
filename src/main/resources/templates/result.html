@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SQL Query Results</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            color: red;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        td.empty {
+            color: #888;
+            font-style: italic;
+        }
+
+        .back-link {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #4a90e2;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #357ab7;
+        }
+    </style>
+</head>
+<body>
+
+<h1>SQL Query Results</h1>
+
+<!-- Отображение сообщений об ошибках -->
+<p th:if="${message}" class="message" th:text="${message}"></p>
+
+<!-- Отображение таблицы с результатами SQL-запроса -->
+<table th:if="${results != null}">
+    <thead>
+    <tr>
+        <!-- Заголовки таблицы, извлекаются динамически из первого результата -->
+        <th th:each="column : ${results[0].keySet()}">
+            <span th:text="${column}"></span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Строки данных -->
+    <tr th:each="row : ${results}">
+        <td th:each="column : ${row.values()}" th:text="${column != null ? column : 'No Data'}"
+            th:classappend="${column == null ? 'empty' : ''}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Ссылка на главную страницу -->
+<a class="back-link" href="/">Back to Home</a>
+
+</body>
+</html>

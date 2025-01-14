@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Table Results</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4a90e2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .results {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 800px;
+            overflow-x: auto; /* Adds horizontal scroll if the content overflows */
+        }
+
+        a {
+            color: #4a90e2;
+            font-size: 1.2em;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #357ab7;
+        }
+
+        /* Style for links on hover */
+        a:focus, a:hover {
+            color: #357ab7;
+        }
+    </style>
+</head>
+<body>
+<h1>Table Command</h1>
+<div class="results" th:utext="${commandResults}"></div>
+<a href="/select-table">Back to Selection</a>
+</body>
+</html>

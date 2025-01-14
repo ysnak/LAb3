@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #333;
+        }
+
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 20px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 180px;
+        }
+
+        button:hover {
+            background-color: #357ab7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container button:focus {
+            outline: none;
+            border: 2px solid #357ab7;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1.2em;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            button {
+                min-width: 150px;
+                font-size: 1em;
+                padding: 15px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the database</h1>
+<div class="user-info">
+    <span>Username: <span th:text="${username}"></span></span>
+    <span>Role: <span th:text="${role}"></span></span>
+    <a class="logout" href="/authorization-page">Logout</a>
+</div>
+
+<div class="button-container">
+    <button th:onclick="|window.location.href='/create-entry'|">Create a new entry in the table</button>
+    <button th:onclick="|window.location.href='/select-table'|">Read from the selected table</button>
+    <button onclick="window.location.href='/delete-by-key'">Delete the record using the primary key</button>
+    <button onclick="window.location.href='/edit-table'">Edit table</button>
+    <button onclick="window.location.href='/request-table'">Write SQL request</button>
+</div>
+</body>
+</html>
